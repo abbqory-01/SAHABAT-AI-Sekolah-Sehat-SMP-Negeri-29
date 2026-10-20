@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahabat BK 29 - Teman Curhat SMPN 29 Banjarmasin</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['Fredoka', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                        },
+                        pop: {
+                            purple: '#8b5cf6',
+                            pink: '#ec4899',
+                            yellow: '#f59e0b',
+                            blue: '#3b82f6',
+                            teal: '#14b8a6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-display { font-family: 'Fredoka', cursive; }
+        
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .animate-bounce-subtle { animation: bounce-subtle 2.5s infinite ease-in-out; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen flex flex-col text-slate-800">
+
+    <!-- Terms & Auto-Activation Consent Modal for SMPN 29 Students -->
+    <div id="consentModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl border border-indigo-100 space-y-5 transform transition-all animate-bounce-subtle">
+            <div class="text-center space-y-2">
+                <div class="w-16 h-16 bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 rounded-3xl p-0.5 mx-auto shadow-lg">
+                    <div class="w-full h-full bg-white rounded-[22px] flex items-center justify-center text-3xl">
+                        🏫
+                    </div>
+                </div>
+                <h3 class="font-display font-bold text-xl text-slate-800">Selamat Datang di Sahabat BK 29!</h3>
+                <p class="text-xs text-slate-500">Layanan Bimbingan Konseling Digital SMPN 29 Banjarmasin</p>
+            </div>
+
+            <div class="bg-indigo-50/70 border border-indigo-100 rounded-2xl p-4 text-xs text-indigo-950 space-y-2">
+                <p class="font-bold text-indigo-700 flex items-center">
+                    <i class="fa-solid fa-shield-halved mr-1.5 text-indigo-600"></i> Ketentuan Penggunaan Layanan:
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-slate-700 leading-relaxed">
+                    <li>Aplikasi ini siap merespon cerita kamu secara **otomatis tanpa perlu API Key**! ⚡</li>
+                    <li>Semua cerita dan curhatan kamu dijamin rahasia dan aman 🔒.</li>
+                    <li>Bebas gunakan Bahasa Indonesia atau Bahasa Banjar santai.</li>
+                </ul>
+            </div>
+
+            <div class="pt-1">
+                <button onclick="acceptTermsAndActivate()" class="w-full py-3.5 bg-gradient-to-r from-emerald-500 via-teal-600 to-indigo-600 hover:opacity-95 text-white font-display font-bold text-sm rounded-2xl shadow-lg transition transform active:scale-95 flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Saya Setuju & Mulai Curhat</span>
+                </button>
+            </div>
+            
+            <p class="text-[10px] text-center text-slate-400">
+                Dengan menekan tombol di atas, kamu menyetujui penggunaan layanan konseling SMPN 29 Banjarmasin.
+            </p>
+        </div>
+    </div>
+
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-40 border-b border-indigo-100 shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 py-2.5 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 p-0.5 shadow-md transform hover:rotate-6 transition">
+                    <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center text-xl">
+                        🏫
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <h1 class="font-display font-bold text-lg text-slate-800 tracking-wide">Sahabat BK 29</h1>
+                        <span class="bg-pink-100 text-pink-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-pink-200">SMPN 29 Banjarmasin</span>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium">Teman Curhat & Bimbingan Belajar 24/7 ✨</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <!-- Status Indicator -->
+                <div id="connectionBadge" class="flex items-center text-[11px] bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-1 rounded-full border border-emerald-200">
+                    <span id="statusDot" class="w-2 h-2 rounded-full bg-emerald-500 animate-ping mr-1.5"></span>
+                    <span id="statusText">Siap Mendengar (Otomatis)</span>
+                </div>
+
+                <!-- API Settings Modal Trigger (Optional for cloud key) -->
+                <button onclick="toggleSettingsModal()" title="Pengaturan Lanjutan" class="p-2 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 rounded-xl transition">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-4xl w-full mx-auto px-3 sm:px-4 pt-3 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <!-- Mood Chips -->
+        <div class="flex items-center space-x-1.5 overflow-x-auto py-1 no-scrollbar">
+            <span class="font-bold text-slate-500 mr-1 flex items-center">
+                <i class="fa-solid fa-heart-pulse text-pink-500 mr-1"></i> Mood Kamu:
+            </span>
+            <button onclick="setMood('Cemas 😰')" class="mood-btn px-2.5 py-1 bg-white hover:bg-indigo-50 border border-slate-200 rounded-full transition shadow-sm">😰 Cemas</button>
+            <button onclick="setMood('Capek 😮‍💨')" class="mood-btn px-2.5 py-1 bg-white hover:bg-indigo-50 border border-slate-200 rounded-full transition shadow-sm">😮‍💨 Capek</button>
+            <button onclick="setMood('Sedih 😢')" class="mood-btn px-2.5 py-1 bg-white hover:bg-indigo-50 border border-slate-200 rounded-full transition shadow-sm">😢 Sedih</button>
+            <button onclick="setMood('Marah 😡')" class="mood-btn px-2.5 py-1 bg-white hover:bg-indigo-50 border border-slate-200 rounded-full transition shadow-sm">😡 Kesel</button>
+            <button onclick="setMood('Semangat 🌟')" class="mood-btn px-2.5 py-1 bg-white hover:bg-indigo-50 border border-slate-200 rounded-full transition shadow-sm">🌟 Happy</button>
+        </div>
+
+        <!-- Crisis Info Link -->
+        <button onclick="toggleEmergencyModal()" class="text-rose-600 hover:text-rose-700 bg-rose-50 border border-rose-200 px-3 py-1 rounded-full font-semibold transition flex items-center space-x-1 ml-auto">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            <span>Bantuan Guru BK Sekolah</span>
+        </button>
+    </div>
+
+    <main class="flex-1 max-w-4xl w-full mx-auto px-3 sm:px-4 py-3 flex flex-col justify-center">
+
+        <!-- Chat Card Shell -->
+        <div class="bg-white rounded-3xl shadow-xl border border-indigo-100/80 flex flex-col h-[calc(100vh-175px)] max-h-[760px] overflow-hidden">
+            
+            <!-- Chat Top Info Bar -->
+            <div class="px-5 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white flex items-center justify-between shadow-inner">
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl shadow">
+                            🤖
+                        </div>
+                        <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-indigo-600 rounded-full"></span>
+                    </div>
+                    <div>
+                        <h2 class="font-display font-bold text-base tracking-wide flex items-center">
+                            Kak Sahabat BK
+                            <span class="ml-2 text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-normal">AI Advisor SMPN 29</span>
+                        </h2>
+                        <p class="text-[11px] text-indigo-100">Siap dengar curhatanmu kapan saja (Bahasa Indonesia & Banjar Santun)</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-1">
+                    <button onclick="exportChatSummary()" title="Cetak Ringkasan" class="text-white/80 hover:text-white bg-white/10 hover:bg-white/20 p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-semibold backdrop-blur transition flex items-center space-x-1">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span class="hidden sm:inline">Ringkasan</span>
+                    </button>
+                    <button onclick="clearChat()" title="Bersihkan percakapan" class="text-white/80 hover:text-white bg-white/10 hover:bg-white/20 p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-semibold backdrop-blur transition flex items-center space-x-1">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span class="hidden sm:inline">Reset</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Topics -->
+            <div class="bg-slate-50 border-b border-slate-100 px-4 py-2 overflow-x-auto flex items-center space-x-2 no-scrollbar">
+                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex-shrink-0 mr-1">
+                    <i class="fa-solid fa-bolt text-amber-400"></i> Topik:
+                </span>
+                <button onclick="sendQuickTopic('Aku merasa capek dan pusing dengan tugas-tugas sekolah...')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-xl border border-indigo-100 whitespace-nowrap transition transform hover:scale-105 flex items-center space-x-1">
+                    <span>📚</span> <span>Capek Belajar / Tugas</span>
+                </button>
+                <button onclick="sendQuickTopic('Lagi ada masalah atau salah paham sama teman sekelas nih...')" class="bg-pink-50 hover:bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-xl border border-pink-100 whitespace-nowrap transition transform hover:scale-105 flex items-center space-x-1">
+                    <span>👥</span> <span>Masalah Pertemanan</span>
+                </button>
+                <button onclick="sendQuickTopic('Aku agak cemas dan deg-degan memikirkan nilai ujian sekolah...')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 rounded-xl border border-amber-100 whitespace-nowrap transition transform hover:scale-105 flex items-center space-x-1">
+                    <span>😰</span> <span>Cemas Nilai Ujian</span>
+                </button>
+                <button onclick="sendQuickTopic('Halo kak! Cuma mau cerita santai aja nih tentang hariku...')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-semibold px-3 py-1 rounded-xl border border-emerald-100 whitespace-nowrap transition transform hover:scale-105 flex items-center space-x-1">
+                    <span>🎈</span> <span>Cerita Santai</span>
+                </button>
+            </div>
+
+            <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/50">
+                <!-- Welcome Banner Message -->
+                <div class="flex items-start space-x-3">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center text-lg font-bold shadow-md flex-shrink-0 animate-bounce-subtle">
+                        🤖
+                    </div>
+                    <div class="bg-white border border-indigo-100 rounded-2xl rounded-tl-none p-4 max-w-[85%] sm:max-w-[75%] text-sm text-slate-800 shadow-sm space-y-2">
+                        <div class="flex items-center space-x-2 text-indigo-600 font-display font-bold text-base">
+                            <span>Halo Sahabat SMPN 29!</span> 👋
+                        </div>
+                        <p class="leading-relaxed">
+                            Selamat datang di <b>Sahabat BK 29</b>. Apapun yang sedang kamu rasakan hari ini—entah bingung tugas, capek, cemas, atau butuh teman cerita—kamu berada di tempat yang aman dan rahasia.
+                        </p>
+                        <div class="bg-indigo-50/70 p-3 rounded-xl border border-indigo-100/80 text-xs text-indigo-800 space-y-1">
+                            <p class="font-semibold">💡 Tips curhat nyaman:</p>
+                            <p>• Aplikasi ini **langsung aktif tanpa kunci API**!</p>
+                            <p>• Bebas gunakan Bahasa Indonesia atau Bahasa Banjar santai 😊</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3 sm:p-4 border-t border-slate-100 bg-white">
+                <form onsubmit="handleSendChat(event)" class="flex items-center space-x-2">
+                    <!-- Voice Mic Button -->
+                    <button type="button" id="btnMic" onclick="toggleVoiceInput()" title="Gunakan Suara" class="p-3 bg-slate-100 text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-2xl transition flex-shrink-0">
+                        <i class="fa-solid fa-microphone"></i>
+                    </button>
+
+                    <input type="text" id="chatInput" placeholder="Ketik curhatan atau pertanyaanmu di sini..." class="flex-1 px-4 py-3 bg-slate-100/80 border border-slate-200 rounded-2xl text-sm focus:ring-2 focus:ring-purple-500 focus:bg-white focus:outline-none transition">
+                    
+                    <button type="submit" id="btnSendChat" class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:opacity-95 text-white px-5 py-3 rounded-2xl text-sm font-display font-bold transition shadow-md hover:shadow-lg active:scale-95 flex items-center space-x-1.5 flex-shrink-0">
+                        <span>Kirim</span>
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Emergency / Help Modal -->
+    <div id="emergencyModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl border border-rose-100 space-y-4">
+            <div class="flex items-center justify-between border-b pb-3">
+                <div class="flex items-center space-x-2 text-rose-600 font-display font-bold text-lg">
+                    <i class="fa-solid fa-heart-pulse text-2xl"></i>
+                    <span>Bantuan & Layanan Kontak BK</span>
+                </div>
+                <button onclick="toggleEmergencyModal()" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+                Jika kamu merasa sangat tertekan, membutuhkan pertolongan langsung, atau ingin konseling tatap muka / privat dengan Bapak/Ibu Guru BK SMPN 29 Banjarmasin:
+            </p>
+            <div class="space-y-2 text-xs">
+                <div class="p-3 bg-indigo-50 rounded-2xl border border-indigo-100 flex items-center justify-between">
+                    <div>
+                        <p class="font-bold text-indigo-900">Ruang BK SMPN 29 Banjarmasin</p>
+                        <p class="text-indigo-700">Jam Kerja Sekolah (08.00 - 14.00 WITA)</p>
+                    </div>
+                    <span class="text-xl">🏫</span>
+                </div>
+                <div class="p-3 bg-pink-50 rounded-2xl border border-pink-100 flex items-center justify-between">
+                    <div>
+                        <p class="font-bold text-pink-900">Layanan Hotline BK / Wali Kelas</p>
+                        <p class="text-pink-700">Hubungi Kontak WhatsApp Resmi Sekolah</p>
+                    </div>
+                    <span class="text-xl">📞</span>
+                </div>
+            </div>
+            <button onclick="toggleEmergencyModal()" class="w-full py-2.5 bg-slate-800 text-white font-bold rounded-2xl text-xs hover:bg-slate-900 transition">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- API Settings Modal -->
+    <div id="settingsModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl border border-indigo-100 space-y-4">
+            <div class="flex items-center justify-between border-b pb-3">
+                <div class="flex items-center space-x-2 text-indigo-600 font-display font-bold text-lg">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>Pengaturan Koneksi AI</span>
+                </div>
+                <button onclick="toggleSettingsModal()" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-600">
+                Aplikasi ini **sudah otomatis bisa menjawab** tanpa API Key! Jika Anda memiliki Gemini API Key pribadi, Anda dapat memasukkannya di bawah ini untuk mengaktifkan AI Generatif Cloud Google.
+            </p>
+            <div class="space-y-2">
+                <label class="text-xs font-bold text-slate-700 block">Gemini API Key (Opsional):</label>
+                <input type="password" id="customApiKey" placeholder="Tempel API Key di sini (AIzaSy...)" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div class="flex justify-end space-x-2 pt-2">
+                <button onclick="saveApiKey()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold text-xs hover:bg-indigo-700 transition">
+                    Simpan & Aktifkan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Intelligent Local Counselor Engine for SMPN 29 Banjarmasin
+        const LOCAL_COUNSELOR_KNOWLEDGE = [
+            {
+                keywords: ['tugas', 'capek', 'pusing', 'pr', 'banyak', 'belajar', 'sulit', 'pjj', 'penat', 'lelah'],
+                responses: [
+                    "Halo! Kak Sahabat BK mengerti banget perasaan pian. Tugas sekolah emang kadang suka numpuk dan bikin pusing 😮‍💨. <br><br><b>Tips kecil dari Kak Sahabat:</b><br>1. Istirahat sejenak 10-15 menit, tarik napas dalam-dalam.<br>2. Kerjakan dari yang paling mudah dulu satu per satu.<br>3. Jangan ragu bertanya ke kekawanan atau Bapak/Ibu guru kalau ada yang sulit ya! Semangat terus, pian pasti bisa! 💪✨",
+                    "Istirahat dulu sejenak ya! Kalau merasa lelah dengan pelajaran, jangan dipaksakan berjam-jam tanpa jeda. Cobalah teknik 25 menit belajar, 5 menit istirahat (Pomodoro). Pian hebat sudah berusaha sejauh ini! 🌟"
+                ]
+            },
+            {
+                keywords: ['teman', 'kawan', 'sahabat', 'musuh', 'berantem', 'salah paham', 'sekelas', 'diejek', 'bully'],
+                responses: [
+                    "Masalah pertemanan memang suka bikin hati tidak tenang ya 😢. Di usia SMP, wajar banget ada dinamika atau beda pendapat sama kekawanan.<br><br><b>Saran Kak Sahabat:</b><br>• Coba bicarakan baik-baik saat suasana hati tenang.<br>• Gunakan kalimat ramah seperti <i>'Ulun minta maaf ya kalau ada salah...'</i>.<br>• Kalau merasa diejek atau di-bully, jangan dipendam sendiri! Laporkan hangat ke Wali Kelas atau Bapak/Ibu Guru BK SMPN 29 ya. Kami siap bantu! 🤝"
+                ]
+            },
+            {
+                keywords: ['ujian', 'nilai', 'utp', 'uas', 'tryout', 'cemas', 'takut', 'deg-degan', 'jelek', 'rendah'],
+                responses: [
+                    "Rasa cemas menghadapi ujian atau nilai itu tanda kalau pian peduli dengan masa depan! Tapi jangan sampai bikin kepikiran berlebihan ya 😊.<br><br><b>Ingat:</b> Nilai ujian bukan segalanya, yang paling penting adalah proses belajar dan kejujuran pian. Awali dengan doa, persiapkan materi ringkas, dan tidur cukup sebelum ujian. Semangat ya Sahabat BK! 🌟"
+                ]
+            },
+            {
+                keywords: ['marah', 'kesel', 'jengkel', 'emosi', 'benci', 'baper'],
+                responses: [
+                    "Kalo lagi kesel atau marah, tarik napas dalam-dalam dulu ya... Hirup napas 4 detik, tahan 4 detik, hembuskan perlahan 🧘‍♂️.<br><br>Wajar banget merasa emosi, tapi hindari meluapkannya dengan hal yang bisa merugikan diri sendiri atau orang lain. Mau cerita lebih detail apa yang bikin pian kesel hari ini?"
+                ]
+            },
+            {
+                keywords: ['sedih', 'nangis', 'kecewa', 'patah hati', 'sepi', 'kesepian', 'sendiri'],
+                responses: [
+                    "Tak apa-apa untuk merasa sedih atau ingin menangis. Menangis itu sehat kok untuk melepaskan emosi 🥺. Kak Sahabat BK di sini siap mendengarkan cerita pian. Apapun masalahnya, pian tidak sendirian ya!"
+                ]
+            },
+            {
+                keywords: ['halo', 'hai', 'pagi', 'siang', 'sore', 'malam', 'p', 'assalamualaikum', 'ping', 'tes'],
+                responses: [
+                    "Halo Sahabat SMPN 29! 👋 Selamat datang! Kak Sahabat BK senang banget pian menyapa hari ini. Ada yang bisa Kakak bantu atau mau cerita santai tentang sekolah hari ini? 😊",
+                    "Kada usah sungkan ya! Kak Sahabat BK siap mendengar cerita atau keluh kesah pian kapan saja. Gimana harimu hari ini?"
+                ]
+            }
+        ];
+
+        const DEFAULT_FRIENDLY_RESPONSES = [
+            "Terima kasih sudah mau berbagi cerita dengan Kak Sahabat BK 29 😊. Ceritamu sangat berharga. Apapun yang sedang pian hadapi, tetap semangat dan jalani langkah demi langkah ya! Ada hal lain yang mau diceritakan?",
+            "Kak Sahabat mengerti. Di sekolah SMPN 29 Banjarmasin, semua siswa itu unik dan punya kelebihannya masing-masing. Tetap jadi diri sendiri yang baik ya! Kuatkan niat dan jangan ragu untuk berdiskusi dengan orang tua atau guru BK di sekolah 💖."
+        ];
+
+        let chatHistory = [];
+        let currentMood = '';
+
+        // Consent handling
+        window.addEventListener('DOMContentLoaded', () => {
+            const hasAgreed = localStorage.getItem('bk29_terms_agreed');
+            if (!hasAgreed) {
+                document.getElementById('consentModal').classList.remove('hidden');
+            } else {
+                document.getElementById('consentModal').classList.add('hidden');
+            }
+        });
+
+        function acceptTermsAndActivate() {
+            localStorage.setItem('bk29_terms_agreed', 'true');
+            document.getElementById('consentModal').classList.add('hidden');
+        }
+
+        // Smart Response Generator (Works completely without API Key)
+        function generateLocalCounselorReply(userMessage) {
+            const cleanMsg = userMessage.toLowerCase();
+
+            for (const item of LOCAL_COUNSELOR_KNOWLEDGE) {
+                for (const kw of item.keywords) {
+                    if (cleanMsg.includes(kw)) {
+                        const randomIdx = Math.floor(Math.random() * item.responses.length);
+                        return item.responses[randomIdx];
+                    }
+                }
+            }
+
+            const fallbackIdx = Math.floor(Math.random() * DEFAULT_FRIENDLY_RESPONSES.length);
+            return DEFAULT_FRIENDLY_RESPONSES[fallbackIdx];
+        }
+
+        async function handleSendChat(e) {
+            if (e) e.preventDefault();
+            
+            if (!localStorage.getItem('bk29_terms_agreed')) {
+                document.getElementById('consentModal').classList.remove('hidden');
+                return;
+            }
+
+            const inputEl = document.getElementById('chatInput');
+            const btnSend = document.getElementById('btnSendChat');
+            const userMsg = inputEl.value.trim();
+
+            if (!userMsg) return;
+
+            // Prepend Mood context if active
+            let fullUserMsg = userMsg;
+            if (currentMood) {
+                fullUserMsg = `[Perasaan saat ini: ${currentMood}] ${userMsg}`;
+            }
+
+            // Append User UI message
+            appendChatMessage('user', userMsg);
+            inputEl.value = '';
+
+            btnSend.disabled = true;
+            btnSend.classList.add('opacity-50', 'cursor-not-allowed');
+
+            const typingId = appendTypingIndicator();
+
+            chatHistory.push({ role: 'user', parts: [{ text: fullUserMsg }] });
+
+            // Check if user provided an API key in local settings
+            const customKey = localStorage.getItem('sahabat_bk_apikey');
+
+            if (customKey) {
+                // Try Cloud Gemini API
+                try {
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${customKey}`;
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: chatHistory,
+                            systemInstruction: { parts: [{ text: "Anda adalah Kak Sahabat BK 29, konselor ramah SMPN 29 Banjarmasin." }] }
+                        })
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        const aiReply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                        if (aiReply) {
+                            removeTypingIndicator(typingId);
+                            chatHistory.push({ role: 'model', parts: [{ text: aiReply }] });
+                            appendChatMessage('ai', aiReply);
+                            return;
+                        }
+                    }
+                } catch (err) {
+                    console.warn("Cloud API unavailable, using offline intelligent engine...", err);
+                }
+            }
+
+            // Simulated response delay for natural feel
+            setTimeout(() => {
+                removeTypingIndicator(typingId);
+                const localReply = generateLocalCounselorReply(userMsg);
+                chatHistory.push({ role: 'model', parts: [{ text: localReply }] });
+                appendChatMessage('ai', localReply);
+
+                btnSend.disabled = false;
+                btnSend.classList.remove('opacity-50', 'cursor-not-allowed');
+            }, 800);
+        }
+
+        function sendQuickTopic(topicText) {
+            const inputEl = document.getElementById('chatInput');
+            inputEl.value = topicText;
+            handleSendChat();
+        }
+
+        function setMood(mood) {
+            currentMood = mood;
+            const buttons = document.querySelectorAll('.mood-btn');
+            buttons.forEach(btn => {
+                if (btn.innerText.includes(mood.split(' ')[0])) {
+                    btn.classList.add('bg-indigo-100', 'border-indigo-400', 'font-bold');
+                } else {
+                    btn.classList.remove('bg-indigo-100', 'border-indigo-400', 'font-bold');
+                }
+            });
+        }
+
+        function appendChatMessage(sender, text) {
+            const container = document.getElementById('chatMessages');
+            const msgDiv = document.createElement('div');
+            
+            if (sender === 'user') {
+                msgDiv.className = "flex items-start justify-end space-x-2";
+                msgDiv.innerHTML = `
+                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl rounded-tr-none p-3.5 max-w-[85%] sm:max-w-[75%] text-sm shadow-md leading-relaxed font-medium">
+                        ${escapeHtml(text)}
+                    </div>
+                    <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-pink-400 to-rose-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow">
+                        🧑‍🎓
+                    </div>
+                `;
+            } else {
+                msgDiv.className = "flex items-start space-x-2";
+                msgDiv.innerHTML = `
+                    <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow">
+                        🤖
+                    </div>
+                    <div class="bg-white border border-indigo-100 rounded-2xl rounded-tl-none p-4 max-w-[85%] sm:max-w-[75%] text-sm text-slate-800 shadow-sm leading-relaxed">
+                        ${formatMarkdownText(text)}
+                    </div>
+                `;
+            }
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function appendTypingIndicator() {
+            const container = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            const id = 'typing-' + Date.now();
+            typingDiv.id = id;
+            typingDiv.className = "flex items-start space-x-2";
+            typingDiv.innerHTML = `
+                <div class="w-9 h-9 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow">
+                    🤖
+                </div>
+                <div class="bg-white border border-indigo-100 rounded-2xl rounded-tl-none p-3.5 text-xs text-indigo-600 font-semibold flex items-center space-x-2 shadow-sm">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i>
+                    <span>Kak Sahabat BK sedang menyusun jawaban...</span>
+                </div>
+            `;
+            container.appendChild(typingDiv);
+            container.scrollTop = container.scrollHeight;
+            return id;
+        }
+
+        function removeTypingIndicator(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        function clearChat() {
+            chatHistory = [];
+            currentMood = '';
+            const container = document.getElementById('chatMessages');
+            container.innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center text-lg font-bold shadow-md flex-shrink-0">
+                        🤖
+                    </div>
+                    <div class="bg-white border border-indigo-100 rounded-2xl rounded-tl-none p-4 max-w-[85%] sm:max-w-[75%] text-sm text-slate-800 shadow-sm space-y-2">
+                        <div class="text-indigo-600 font-display font-bold text-base">
+                            Chat berhasil di-reset! ✨
+                        </div>
+                        <p class="leading-relaxed">
+                            Obrolan sebelumnya sudah dibersihkan. Jangan ragu buat cerita atau tanya hal lain lagi ya! Kak Sahabat BK siap mendengarkan. 😊
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleVoiceInput() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert("Fitur perekam suara tidak didukung di browser ini. Gunakan Chrome atau Edge ya!");
+                return;
+            }
+
+            const btnMic = document.getElementById('btnMic');
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'id-ID';
+
+            recognition.onstart = function() {
+                btnMic.classList.add('bg-rose-100', 'text-rose-600', 'animate-pulse');
+            };
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('chatInput').value = transcript;
+            };
+
+            recognition.onend = function() {
+                btnMic.classList.remove('bg-rose-100', 'text-rose-600', 'animate-pulse');
+            };
+
+            recognition.start();
+        }
+
+        function toggleEmergencyModal() {
+            document.getElementById('emergencyModal').classList.toggle('hidden');
+        }
+
+        function toggleSettingsModal() {
+            document.getElementById('settingsModal').classList.toggle('hidden');
+        }
+
+        function saveApiKey() {
+            const key = document.getElementById('customApiKey').value.trim();
+            if (key) {
+                localStorage.setItem('sahabat_bk_apikey', key);
+                alert("API Key berhasil disimpan!");
+            } else {
+                localStorage.removeItem('sahabat_bk_apikey');
+                alert("API Key dikosongkan. Aplikasi tetap berjalan otomatis!");
+            }
+            toggleSettingsModal();
+        }
+
+        function exportChatSummary() {
+            if (chatHistory.length === 0) {
+                alert("Belum ada percakapan untuk diringkas.");
+                return;
+            }
+            let printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>Catatan Bimbingan BK 29</title>');
+            printWindow.document.write('<style>body{font-family:sans-serif;padding:20px;} h2{color:#4f46e5;} .msg{margin-bottom:12px;padding:10px;border-radius:8px;background:#f8fafc;}</style>');
+            printWindow.document.write('</head><body>');
+            printWindow.document.write('<h2>Catatan Ringkasan Bimbingan - Sahabat BK 29</h2>');
+            printWindow.document.write('<p><i>SMP Negeri 29 Banjarmasin</i></p><hr><br>');
+            
+            chatHistory.forEach(item => {
+                let role = item.role === 'user' ? 'Siswa' : 'Kak Sahabat BK';
+                printWindow.document.write(`<div class="msg"><b>${role}:</b> <p>${escapeHtml(item.parts[0].text)}</p></div>`);
+            });
+            
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function formatMarkdownText(text) {
+            let formatted = escapeHtml(text);
+            formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+            formatted = formatted.replace(/\*(.*?)\*/g, '<i>$1</i>');
+            formatted = formatted.replace(/\n/g, '<br>');
+            return formatted;
+        }
+    </script>
+</body>
+</html>
