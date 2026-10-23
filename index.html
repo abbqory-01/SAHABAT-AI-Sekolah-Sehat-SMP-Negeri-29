@@ -58,7 +58,7 @@
 </head>
 <body class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 min-h-screen flex flex-col text-slate-800">
 
-    <!-- Terms & Auto-Activation Consent Modal for SMPN 29 Students -->
+    <!-- Terms & Consent Modal -->
     <div id="consentModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl border border-indigo-100 space-y-5 transform transition-all animate-bounce-subtle">
             <div class="text-center space-y-2">
@@ -113,22 +113,15 @@
             </div>
 
             <div class="flex items-center space-x-2">
-                <!-- Status Indicator -->
                 <div id="connectionBadge" class="flex items-center text-[11px] bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-1 rounded-full border border-emerald-200">
                     <span id="statusDot" class="w-2 h-2 rounded-full bg-emerald-500 animate-ping mr-1.5"></span>
                     <span id="statusText">Siap Mendengar (Otomatis)</span>
                 </div>
-
-                <!-- API Settings Modal Trigger (Optional for cloud key) -->
-                <button onclick="toggleSettingsModal()" title="Pengaturan Lanjutan" class="p-2 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 rounded-xl transition">
-                    <i class="fa-solid fa-gear"></i>
-                </button>
             </div>
         </div>
     </header>
 
     <div class="max-w-4xl w-full mx-auto px-3 sm:px-4 pt-3 flex flex-wrap items-center justify-between gap-2 text-xs">
-        <!-- Mood Chips -->
         <div class="flex items-center space-x-1.5 overflow-x-auto py-1 no-scrollbar">
             <span class="font-bold text-slate-500 mr-1 flex items-center">
                 <i class="fa-solid fa-heart-pulse text-pink-500 mr-1"></i> Mood Kamu:
@@ -140,19 +133,21 @@
             <button onclick="setMood('Semangat 🌟')" class="mood-btn px-2.5 py-1 bg-white hover:bg-indigo-50 border border-slate-200 rounded-full transition shadow-sm">🌟 Happy</button>
         </div>
 
-        <!-- Crisis Info Link -->
-        <button onclick="toggleEmergencyModal()" class="text-rose-600 hover:text-rose-700 bg-rose-50 border border-rose-200 px-3 py-1 rounded-full font-semibold transition flex items-center space-x-1 ml-auto">
-            <i class="fa-solid fa-hand-holding-heart"></i>
-            <span>Bantuan Guru BK Sekolah</span>
-        </button>
+        <div class="flex items-center space-x-2 ml-auto">
+            <button onclick="toggleBreathingModal()" class="text-teal-700 hover:text-teal-800 bg-teal-50 border border-teal-200 px-3 py-1 rounded-full font-semibold transition flex items-center space-x-1">
+                <i class="fa-solid fa-wind"></i>
+                <span>Relaksasi Napas 🧘‍♂️</span>
+            </button>
+            <button onclick="toggleEmergencyModal()" class="text-rose-600 hover:text-rose-700 bg-rose-50 border border-rose-200 px-3 py-1 rounded-full font-semibold transition flex items-center space-x-1">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+                <span>Bantuan Guru BK</span>
+            </button>
+        </div>
     </div>
 
     <main class="flex-1 max-w-4xl w-full mx-auto px-3 sm:px-4 py-3 flex flex-col justify-center">
-
-        <!-- Chat Card Shell -->
         <div class="bg-white rounded-3xl shadow-xl border border-indigo-100/80 flex flex-col h-[calc(100vh-175px)] max-h-[760px] overflow-hidden">
             
-            <!-- Chat Top Info Bar -->
             <div class="px-5 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white flex items-center justify-between shadow-inner">
                 <div class="flex items-center space-x-3">
                     <div class="relative">
@@ -171,18 +166,18 @@
                 </div>
 
                 <div class="flex items-center space-x-1">
-                    <button onclick="exportChatSummary()" title="Cetak Ringkasan" class="text-white/80 hover:text-white bg-white/10 hover:bg-white/20 p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-semibold backdrop-blur transition flex items-center space-x-1">
+                    <button onclick="exportChatSummary()" aria-label="Cetak Ringkasan" title="Cetak Ringkasan" class="text-white/80 hover:text-white bg-white/10 hover:bg-white/20 p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-semibold backdrop-blur transition flex items-center space-x-1">
                         <i class="fa-solid fa-file-pdf"></i>
                         <span class="hidden sm:inline">Ringkasan</span>
                     </button>
-                    <button onclick="clearChat()" title="Bersihkan percakapan" class="text-white/80 hover:text-white bg-white/10 hover:bg-white/20 p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-semibold backdrop-blur transition flex items-center space-x-1">
+                    <button onclick="clearChat()" aria-label="Bersihkan percakapan" title="Bersihkan percakapan" class="text-white/80 hover:text-white bg-white/10 hover:bg-white/20 p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-semibold backdrop-blur transition flex items-center space-x-1">
                         <i class="fa-solid fa-rotate-left"></i>
                         <span class="hidden sm:inline">Reset</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Quick Topics -->
+            <!-- Quick Topics Bar -->
             <div class="bg-slate-50 border-b border-slate-100 px-4 py-2 overflow-x-auto flex items-center space-x-2 no-scrollbar">
                 <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex-shrink-0 mr-1">
                     <i class="fa-solid fa-bolt text-amber-400"></i> Topik:
@@ -193,6 +188,9 @@
                 <button onclick="sendQuickTopic('Lagi ada masalah atau salah paham sama teman sekelas nih...')" class="bg-pink-50 hover:bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-xl border border-pink-100 whitespace-nowrap transition transform hover:scale-105 flex items-center space-x-1">
                     <span>👥</span> <span>Masalah Pertemanan</span>
                 </button>
+                <button onclick="sendQuickTopic('Aku merasa minder, pemalu, dan kurang percaya diri di sekolah...')" class="bg-purple-50 hover:bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-xl border border-purple-100 whitespace-nowrap transition transform hover:scale-105 flex items-center space-x-1">
+                    <span>🌱</span> <span>Minder / Percaya Diri</span>
+                </button>
                 <button onclick="sendQuickTopic('Aku agak cemas dan deg-degan memikirkan nilai ujian sekolah...')" class="bg-amber-50 hover:bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 rounded-xl border border-amber-100 whitespace-nowrap transition transform hover:scale-105 flex items-center space-x-1">
                     <span>😰</span> <span>Cemas Nilai Ujian</span>
                 </button>
@@ -202,7 +200,6 @@
             </div>
 
             <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/50">
-                <!-- Welcome Banner Message -->
                 <div class="flex items-start space-x-3">
                     <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center text-lg font-bold shadow-md flex-shrink-0 animate-bounce-subtle">
                         🤖
@@ -216,7 +213,7 @@
                         </p>
                         <div class="bg-indigo-50/70 p-3 rounded-xl border border-indigo-100/80 text-xs text-indigo-800 space-y-1">
                             <p class="font-semibold">💡 Tips curhat nyaman:</p>
-                            <p>• Aplikasi ini **langsung aktif tanpa kunci API**!</p>
+                            <p>• Aplikasi ini **langsung aktif tanpa perlu API Key**!</p>
                             <p>• Bebas gunakan Bahasa Indonesia atau Bahasa Banjar santai 😊</p>
                         </div>
                     </div>
@@ -225,12 +222,11 @@
 
             <div class="p-3 sm:p-4 border-t border-slate-100 bg-white">
                 <form onsubmit="handleSendChat(event)" class="flex items-center space-x-2">
-                    <!-- Voice Mic Button -->
-                    <button type="button" id="btnMic" onclick="toggleVoiceInput()" title="Gunakan Suara" class="p-3 bg-slate-100 text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-2xl transition flex-shrink-0">
+                    <button type="button" id="btnMic" onclick="toggleVoiceInput()" aria-label="Gunakan Suara" title="Gunakan Suara" class="p-3 bg-slate-100 text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-2xl transition flex-shrink-0">
                         <i class="fa-solid fa-microphone"></i>
                     </button>
 
-                    <input type="text" id="chatInput" placeholder="Ketik curhatan atau pertanyaanmu di sini..." class="flex-1 px-4 py-3 bg-slate-100/80 border border-slate-200 rounded-2xl text-sm focus:ring-2 focus:ring-purple-500 focus:bg-white focus:outline-none transition">
+                    <input type="text" id="chatInput" aria-label="Pesan Curhat" placeholder="Ketik curhatan atau pertanyaanmu di sini..." class="flex-1 px-4 py-3 bg-slate-100/80 border border-slate-200 rounded-2xl text-sm focus:ring-2 focus:ring-purple-500 focus:bg-white focus:outline-none transition">
                     
                     <button type="submit" id="btnSendChat" class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:opacity-95 text-white px-5 py-3 rounded-2xl text-sm font-display font-bold transition shadow-md hover:shadow-lg active:scale-95 flex items-center space-x-1.5 flex-shrink-0">
                         <span>Kirim</span>
@@ -240,10 +236,59 @@
             </div>
 
         </div>
-
     </main>
 
-    <!-- Emergency / Help Modal -->
+    <!-- Modal Relaksasi Pernapasan Interaktif dengan Mode Pilihan -->
+    <div id="breathingModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl border border-teal-100 text-center space-y-4">
+            <div class="flex items-center justify-between border-b pb-3">
+                <div class="flex items-center space-x-2 text-teal-600 font-display font-bold text-lg">
+                    <i class="fa-solid fa-wind text-xl"></i>
+                    <span>Relaksasi Pernapasan</span>
+                </div>
+                <button onclick="toggleBreathingModal()" aria-label="Tutup" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Selector Mode Ritme -->
+            <div class="flex justify-center bg-slate-100 p-1 rounded-2xl text-xs font-semibold">
+                <button id="btnMode444" onclick="selectBreathingMode('444')" class="flex-1 py-1.5 bg-white text-teal-700 rounded-xl shadow-sm transition">
+                    4-4-4 (Fokus & Cemas)
+                </button>
+                <button id="btnMode478" onclick="selectBreathingMode('478')" class="flex-1 py-1.5 text-slate-500 hover:text-slate-700 rounded-xl transition">
+                    4-7-8 (Tenang & Emosi)
+                </button>
+            </div>
+
+            <p id="breathDescription" class="text-[11px] text-slate-500 leading-relaxed h-8 flex items-center justify-center">
+                Cocok untuk meredakan gugup sebelum ujian atau tampil di depan kelas.
+            </p>
+
+            <!-- Animasi Lingkaran Bernapas -->
+            <div class="relative w-36 h-36 mx-auto flex items-center justify-center">
+                <div id="breathCircle" class="w-28 h-28 bg-gradient-to-br from-teal-400 to-indigo-500 rounded-full opacity-80 shadow-lg transition-all ease-in-out flex items-center justify-center">
+                    <span id="breathCounter" class="text-white font-bold text-2xl">4</span>
+                </div>
+            </div>
+
+            <div class="space-y-0.5">
+                <p id="breathText" class="font-display font-bold text-base text-teal-700">Tekan 'Mulai' untuk relaksasi</p>
+                <p id="breathModeTag" class="text-[11px] text-slate-400 font-medium">Mode: 4-4-4</p>
+            </div>
+
+            <div class="flex space-x-2 pt-1">
+                <button id="btnStartBreath" onclick="startBreathingExercise()" class="flex-1 py-3 bg-gradient-to-r from-teal-500 to-indigo-600 hover:opacity-95 text-white font-bold text-xs rounded-2xl shadow-md transition transform active:scale-95">
+                    Mulai
+                </button>
+                <button onclick="stopBreathingExercise()" class="px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xs rounded-2xl transition">
+                    Stop
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Modal -->
     <div id="emergencyModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl border border-rose-100 space-y-4">
             <div class="flex items-center justify-between border-b pb-3">
@@ -251,7 +296,7 @@
                     <i class="fa-solid fa-heart-pulse text-2xl"></i>
                     <span>Bantuan & Layanan Kontak BK</span>
                 </div>
-                <button onclick="toggleEmergencyModal()" class="text-slate-400 hover:text-slate-600">
+                <button onclick="toggleEmergencyModal()" aria-label="Tutup" class="text-slate-400 hover:text-slate-600">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
@@ -280,53 +325,79 @@
         </div>
     </div>
 
-    <!-- API Settings Modal -->
-    <div id="settingsModal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl border border-indigo-100 space-y-4">
-            <div class="flex items-center justify-between border-b pb-3">
-                <div class="flex items-center space-x-2 text-indigo-600 font-display font-bold text-lg">
-                    <i class="fa-solid fa-sliders"></i>
-                    <span>Pengaturan Koneksi AI</span>
-                </div>
-                <button onclick="toggleSettingsModal()" class="text-slate-400 hover:text-slate-600">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-            <p class="text-xs text-slate-600">
-                Aplikasi ini **sudah otomatis bisa menjawab** tanpa API Key! Jika Anda memiliki Gemini API Key pribadi, Anda dapat memasukkannya di bawah ini untuk mengaktifkan AI Generatif Cloud Google.
-            </p>
-            <div class="space-y-2">
-                <label class="text-xs font-bold text-slate-700 block">Gemini API Key (Opsional):</label>
-                <input type="password" id="customApiKey" placeholder="Tempel API Key di sini (AIzaSy...)" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-            </div>
-            <div class="flex justify-end space-x-2 pt-2">
-                <button onclick="saveApiKey()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold text-xs hover:bg-indigo-700 transition">
-                    Simpan & Aktifkan
-                </button>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Intelligent Local Counselor Engine for SMPN 29 Banjarmasin
         const LOCAL_COUNSELOR_KNOWLEDGE = [
             {
-                keywords: ['tugas', 'capek', 'pusing', 'pr', 'banyak', 'belajar', 'sulit', 'pjj', 'penat', 'lelah'],
+                keywords: ['tugas', 'capek', 'pusing', 'pr', 'banyak', 'belajar', 'sulit', 'penat', 'lelah', 'malas', 'mager'],
                 responses: [
-                    "Halo! Kak Sahabat BK mengerti banget perasaan pian. Tugas sekolah emang kadang suka numpuk dan bikin pusing 😮‍💨. <br><br><b>Tips kecil dari Kak Sahabat:</b><br>1. Istirahat sejenak 10-15 menit, tarik napas dalam-dalam.<br>2. Kerjakan dari yang paling mudah dulu satu per satu.<br>3. Jangan ragu bertanya ke kekawanan atau Bapak/Ibu guru kalau ada yang sulit ya! Semangat terus, pian pasti bisa! 💪✨",
-                    "Istirahat dulu sejenak ya! Kalau merasa lelah dengan pelajaran, jangan dipaksakan berjam-jam tanpa jeda. Cobalah teknik 25 menit belajar, 5 menit istirahat (Pomodoro). Pian hebat sudah berusaha sejauh ini! 🌟"
+                    "Halo! Kak Sahabat BK mengerti banget perasaan pian. Tugas sekolah emang kadang suka numpuk dan bikin pusing 😮‍💨.<br><br><b>Tips kecil dari Kak Sahabat:</b><br>1. Istirahat sejenak 10-15 menit, tarik napas dalam-dalam.<br>2. Cicil dari tugas yang paling mudah atau paling pendek dulu.<br>3. Gunakan teknik Pomodoro (25 menit fokus, 5 menit istirahat).<br>4. Jangan ragu bertanya ke kekawanan atau Bapak/Ibu guru kalau ada yang sulit ya! Semangat terus, pian pasti bisa! 💪✨",
+                    "Istirahat dulu sejenak ya! Kalau merasa lelah dengan pelajaran, jangan dipaksakan berjam-jam tanpa jeda. Pian hebat sudah berusaha sejauh ini! 🌟"
                 ]
             },
             {
-                keywords: ['teman', 'kawan', 'sahabat', 'musuh', 'berantem', 'salah paham', 'sekelas', 'diejek', 'bully'],
+                keywords: ['teman', 'kawan', 'sahabat', 'musuh', 'berantem', 'salah paham', 'sekelas', 'dijauhi', 'geng'],
                 responses: [
-                    "Masalah pertemanan memang suka bikin hati tidak tenang ya 😢. Di usia SMP, wajar banget ada dinamika atau beda pendapat sama kekawanan.<br><br><b>Saran Kak Sahabat:</b><br>• Coba bicarakan baik-baik saat suasana hati tenang.<br>• Gunakan kalimat ramah seperti <i>'Ulun minta maaf ya kalau ada salah...'</i>.<br>• Kalau merasa diejek atau di-bully, jangan dipendam sendiri! Laporkan hangat ke Wali Kelas atau Bapak/Ibu Guru BK SMPN 29 ya. Kami siap bantu! 🤝"
+                    "Masalah pertemanan memang suka bikin hati tidak tenang ya 😢. Di usia SMP, wajar banget ada dinamika atau beda pendapat sama kekawanan.<br><br><b>Saran Kak Sahabat:</b><br>• Coba bicarakan baik-baik saat suasana hati tenang.<br>• Gunakan kalimat ramah seperti <i>'Ulun minta maaf ya kalau ada salah...'</i>.<br>• Fokus pada teman-teman yang memberi energi positif dan saling mendukung. Jangan ragu cerita ke Guru BK jika merasa disudutkan ya! 🤝"
                 ]
             },
             {
-                keywords: ['ujian', 'nilai', 'utp', 'uas', 'tryout', 'cemas', 'takut', 'deg-degan', 'jelek', 'rendah'],
+                keywords: ['bully', 'perundungan', 'diejek', 'dipalak', 'diancam', 'diejek nama orang tua', 'dikucilkan', 'dihina'],
+                responses: [
+                    "Perundungan atau <i>bullying</i> adalah hal yang tidak boleh dibiarkan! Kamu sangat berani sudah menceritakan ini 🛡️.<br><br><b>Langkah penting dari Kak Sahabat:</b><br>1. Ingat, ini **bukan kesalahanmu**.<br>2. Jangan takut atau ragu untuk melaporkan langsung ke Bapak/Ibu Guru BK SMPN 29 atau Wali Kelas.<br>3. Jika terjadi di media sosial, simpan bukti *screenshot*nya.<br>4. Kita di sekolah siap melindungi dan membantumu menyelesaikan masalah ini secara aman dan rahasia! 💖"
+                ]
+            },
+            {
+                keywords: ['sma', 'smk', 'jurusan', 'lanjut sekolah', 'kuliah', 'masa depan', 'cita-cita', 'masuk mana'],
+                responses: [
+                    "Memikirkan masa depan sejak SMP itu langkah yang keren banget! 🌟<br><br><b>Panduan Singkat Memilih:</b><br>• <b>SMA:</b> Cocok jika pian suka teori, akademik, dan berencana lanjut kuliah.<br>• <b>SMK:</b> Cocok jika pian suka praktik keterampilan khusus dan ingin siap bekerja/wirausaha setelah lulus.<br><br>Yuk kenali minat dan bakat pian dulu! Pian juga bisa konsultasi minat bakat langsung di Ruang BK SMPN 29 ya! 🎯"
+                ]
+            },
+            {
+                keywords: ['hp', 'game', 'game online', 'gadget', 'mabar', 'begadang', 'sosmed', 'tiktok', 'kecanduan'],
+                responses: [
+                    "Main *game* atau main HP itu seru buat *refreshing*, tapi kalau sampai lupa waktu dan bikin nilai turun, bisa berbahaya lho 📱.<br><br><b>Coba trik ini:</b><br>1. Buat jadwal khusus main HP (misal: maksimal 1-2 jam setelah tugas selesai).<br>2. Matikan notifikasi HP saat jam belajar.<br>3. Hindari main HP 30 menit sebelum tidur supaya otak pian bisa istirahat maksimal! 😴"
+                ]
+            },
+            {
+                keywords: ['orang tua', 'ortu', 'mama', 'papa', 'ayah', 'ibu', 'dimarahi', 'keluarga', 'rumah', 'broken'],
+                responses: [
+                    "Cerita tentang keluarga memang kadang terasa berat dan menyentuh hati 🫂.<br><br>Jika sedang ada selisih paham dengan orang tua, cobalah untuk mendengarkan dulu saat suasana tenang. Kadang orang tua memarahi karena cemas atau peduli, meski caranya kadang bikin kita sedih.<br><br>Jika merasa sangat tertekan dengan kondisi di rumah, pintu Ruang BK SMPN 29 selalu terbuka untuk jadi tempat curhat aman buat pian."
+                ]
+            },
+            {
+                keywords: ['ujian', 'nilai', 'utp', 'uas', 'tryout', 'cemas', 'takut', 'deg-degan', 'jelek', 'rendah', 'rapor'],
                 responses: [
                     "Rasa cemas menghadapi ujian atau nilai itu tanda kalau pian peduli dengan masa depan! Tapi jangan sampai bikin kepikiran berlebihan ya 😊.<br><br><b>Ingat:</b> Nilai ujian bukan segalanya, yang paling penting adalah proses belajar dan kejujuran pian. Awali dengan doa, persiapkan materi ringkas, dan tidur cukup sebelum ujian. Semangat ya Sahabat BK! 🌟"
+                ]
+            },
+            {
+                keywords: ['pemalu', 'minder', 'percaya diri', 'pd', 'takut tampil', 'gugup', 'demam panggung', 'malu'],
+                responses: [
+                    "Minder atau kurang percaya diri itu wajar banget dialami saat SMP 😊.<br><br><b>Tips membangun rasa percaya diri dari Kak Sahabat:</b><br>1. Mulai dari hal kecil, misalnya berani menyapa teman atau bertanya 1 kali saat pelajaran.<br>2. Fokus pada kelebihanmu, bukan kekuranganmu.<br>3. Ingat bahwa setiap orang pernah bikin salah dan itu proses belajar yang wajar! Kamu hebat kok! ✨"
+                ]
+            },
+            {
+                keywords: ['jadwal', 'waktu', 'suka menunda', 'nanti aja', 'terlalu sibuk', 'ekstrakurikuler', 'ekskul'],
+                responses: [
+                    "Suka menunda pekerjaan atau bingung bagi waktu antara sekolah, ekskul, dan main? 🕒<br><br><b>Coba cara simpel ini:</b><br>• Tulis daftar kegiatan harianmu (*To-Do List*).<br>• Dahulukan yang penting dan mendesak (*prioritas*).<br>• Beri hadiah kecil untuk diri sendiri (misal: main game 30 menit) setelah berhasil menyelesaikan tugas tepat waktu!"
+                ]
+            },
+            {
+                keywords: ['adik', 'kakak', 'saudara', 'iri', 'dianaktirikan', 'dibandingkan', 'dibanding-bandingkan'],
+                responses: [
+                    "Dibanding-bandingkan dengan saudara sendiri memang bikin sakit hati dan kesal 😔.<br><br>Ingat ya, setiap anak itu unik dan punya potensi masing-masing. Kalau merasa sedih, komunikasikan perasaanmu dengan santun ke orang tua saat suasana santai, atau tumpahkan curhatanmu di sini/Ruang BK SMPN 29."
+                ]
+            },
+            {
+                keywords: ['suka', 'pacar', 'pacaran', 'cinta', 'ditolak', 'crush', 'doi', 'suka sama orang'],
+                responses: [
+                    "Mulai tertarik atau suka sama seseorang di masa SMP itu hal yang sangat wajar dan alami! 💖<br><br>Yang terpenting: jadikan rasa suka itu sebagai penyemangat belajar, bukan malah bikin fokus sekolah terganggu ya. Tetap jaga batas-batas pergaulan yang sehat!"
+                ]
+            },
+            {
+                keywords: ['pindah', 'siswa baru', 'sekolah baru', 'canggung', 'adaptasi', 'belum punya teman'],
+                responses: [
+                    "Menyesuaikan diri di lingkungan atau kelas baru memang butuh waktu 🏫.<br><br><b>Langkah awal:</b> Murahkan senyum, bersikap ramah, dan jangan ragu menawarkan bantuan kecil ke teman sebangku. Lama-lama kamu pasti bakal menemukan kawan yang cocok!"
                 ]
             },
             {
@@ -336,13 +407,13 @@
                 ]
             },
             {
-                keywords: ['sedih', 'nangis', 'kecewa', 'patah hati', 'sepi', 'kesepian', 'sendiri'],
+                keywords: ['sedih', 'nangis', 'kecewa', 'patah hati', 'sepi', 'kesepian', 'sendiri', 'hampa'],
                 responses: [
-                    "Tak apa-apa untuk merasa sedih atau ingin menangis. Menangis itu sehat kok untuk melepaskan emosi 🥺. Kak Sahabat BK di sini siap mendengarkan cerita pian. Apapun masalahnya, pian tidak sendirian ya!"
+                    "Tak apa-apa untuk merasa sedih atau ingin menangis. Menangis itu sehat kok untuk melepaskan beban emosi 🥺. Kak Sahabat BK di sini siap mendengarkan cerita pian. Apapun masalahnya, pian tidak sendirian ya!"
                 ]
             },
             {
-                keywords: ['halo', 'hai', 'pagi', 'siang', 'sore', 'malam', 'p', 'assalamualaikum', 'ping', 'tes'],
+                keywords: ['halo', 'hai', 'pagi', 'siang', 'sore', 'malam', 'p', 'assalamualaikum', 'ping', 'tes', 'kak'],
                 responses: [
                     "Halo Sahabat SMPN 29! 👋 Selamat datang! Kak Sahabat BK senang banget pian menyapa hari ini. Ada yang bisa Kakak bantu atau mau cerita santai tentang sekolah hari ini? 😊",
                     "Kada usah sungkan ya! Kak Sahabat BK siap mendengar cerita atau keluh kesah pian kapan saja. Gimana harimu hari ini?"
@@ -357,8 +428,10 @@
 
         let chatHistory = [];
         let currentMood = '';
+        let breathingTimer = null;
+        let isBreathingRunning = false;
+        let currentBreathingMode = '444'; // default: 4-4-4
 
-        // Consent handling
         window.addEventListener('DOMContentLoaded', () => {
             const hasAgreed = localStorage.getItem('bk29_terms_agreed');
             if (!hasAgreed) {
@@ -373,24 +446,52 @@
             document.getElementById('consentModal').classList.add('hidden');
         }
 
-        // Smart Response Generator (Works completely without API Key)
         function generateLocalCounselorReply(userMessage) {
-            const cleanMsg = userMessage.toLowerCase();
+            const cleanMsg = userMessage.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "");
+            const words = cleanMsg.split(/\s+/);
+
+            let bestMatch = null;
+            let maxMatchCount = 0;
 
             for (const item of LOCAL_COUNSELOR_KNOWLEDGE) {
+                let matchCount = 0;
+
                 for (const kw of item.keywords) {
-                    if (cleanMsg.includes(kw)) {
-                        const randomIdx = Math.floor(Math.random() * item.responses.length);
-                        return item.responses[randomIdx];
+                    const cleanKw = kw.toLowerCase();
+                    
+                    if (cleanKw.includes(" ")) {
+                        if (cleanMsg.includes(cleanKw)) matchCount += 2;
+                    } else {
+                        if (words.includes(cleanKw) || cleanMsg.includes(cleanKw)) {
+                            matchCount += 1;
+                        }
                     }
                 }
+
+                if (matchCount > maxMatchCount) {
+                    maxMatchCount = matchCount;
+                    bestMatch = item;
+                }
+            }
+
+            if (bestMatch && maxMatchCount > 0) {
+                const randomIdx = Math.floor(Math.random() * bestMatch.responses.length);
+                return bestMatch.responses[randomIdx];
             }
 
             const fallbackIdx = Math.floor(Math.random() * DEFAULT_FRIENDLY_RESPONSES.length);
             return DEFAULT_FRIENDLY_RESPONSES[fallbackIdx];
         }
 
-        async function handleSendChat(e) {
+        function resetSendButton() {
+            const btnSend = document.getElementById('btnSendChat');
+            if (btnSend) {
+                btnSend.disabled = false;
+                btnSend.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        function handleSendChat(e) {
             if (e) e.preventDefault();
             
             if (!localStorage.getItem('bk29_terms_agreed')) {
@@ -404,13 +505,11 @@
 
             if (!userMsg) return;
 
-            // Prepend Mood context if active
             let fullUserMsg = userMsg;
             if (currentMood) {
                 fullUserMsg = `[Perasaan saat ini: ${currentMood}] ${userMsg}`;
             }
 
-            // Append User UI message
             appendChatMessage('user', userMsg);
             inputEl.value = '';
 
@@ -418,49 +517,14 @@
             btnSend.classList.add('opacity-50', 'cursor-not-allowed');
 
             const typingId = appendTypingIndicator();
-
             chatHistory.push({ role: 'user', parts: [{ text: fullUserMsg }] });
 
-            // Check if user provided an API key in local settings
-            const customKey = localStorage.getItem('sahabat_bk_apikey');
-
-            if (customKey) {
-                // Try Cloud Gemini API
-                try {
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${customKey}`;
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            contents: chatHistory,
-                            systemInstruction: { parts: [{ text: "Anda adalah Kak Sahabat BK 29, konselor ramah SMPN 29 Banjarmasin." }] }
-                        })
-                    });
-
-                    if (response.ok) {
-                        const data = await response.json();
-                        const aiReply = data.candidates?.[0]?.content?.parts?.[0]?.text;
-                        if (aiReply) {
-                            removeTypingIndicator(typingId);
-                            chatHistory.push({ role: 'model', parts: [{ text: aiReply }] });
-                            appendChatMessage('ai', aiReply);
-                            return;
-                        }
-                    }
-                } catch (err) {
-                    console.warn("Cloud API unavailable, using offline intelligent engine...", err);
-                }
-            }
-
-            // Simulated response delay for natural feel
             setTimeout(() => {
                 removeTypingIndicator(typingId);
                 const localReply = generateLocalCounselorReply(userMsg);
                 chatHistory.push({ role: 'model', parts: [{ text: localReply }] });
                 appendChatMessage('ai', localReply);
-
-                btnSend.disabled = false;
-                btnSend.classList.remove('opacity-50', 'cursor-not-allowed');
+                resetSendButton();
             }, 800);
         }
 
@@ -539,6 +603,12 @@
         function clearChat() {
             chatHistory = [];
             currentMood = '';
+            
+            const buttons = document.querySelectorAll('.mood-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-indigo-100', 'border-indigo-400', 'font-bold');
+            });
+
             const container = document.getElementById('chatMessages');
             container.innerHTML = `
                 <div class="flex items-start space-x-3">
@@ -555,6 +625,7 @@
                     </div>
                 </div>
             `;
+            resetSendButton();
         }
 
         function toggleVoiceInput() {
@@ -588,20 +659,108 @@
             document.getElementById('emergencyModal').classList.toggle('hidden');
         }
 
-        function toggleSettingsModal() {
-            document.getElementById('settingsModal').classList.toggle('hidden');
+        // Relaksasi Pernapasan dengan Pilihan Ritme
+        function toggleBreathingModal() {
+            const modal = document.getElementById('breathingModal');
+            modal.classList.toggle('hidden');
+            if (modal.classList.contains('hidden')) {
+                stopBreathingExercise();
+            }
         }
 
-        function saveApiKey() {
-            const key = document.getElementById('customApiKey').value.trim();
-            if (key) {
-                localStorage.setItem('sahabat_bk_apikey', key);
-                alert("API Key berhasil disimpan!");
+        function selectBreathingMode(mode) {
+            if (isBreathingRunning) stopBreathingExercise();
+            currentBreathingMode = mode;
+
+            const btn444 = document.getElementById('btnMode444');
+            const btn478 = document.getElementById('btnMode478');
+            const desc = document.getElementById('breathDescription');
+            const tag = document.getElementById('breathModeTag');
+
+            if (mode === '444') {
+                btn444.className = "flex-1 py-1.5 bg-white text-teal-700 rounded-xl shadow-sm transition font-semibold";
+                btn478.className = "flex-1 py-1.5 text-slate-500 hover:text-slate-700 rounded-xl transition font-semibold";
+                desc.innerText = "Cocok untuk meredakan gugup sebelum ujian atau tampil di depan kelas.";
+                tag.innerText = "Mode: 4-4-4 (Box Breathing)";
             } else {
-                localStorage.removeItem('sahabat_bk_apikey');
-                alert("API Key dikosongkan. Aplikasi tetap berjalan otomatis!");
+                btn478.className = "flex-1 py-1.5 bg-white text-teal-700 rounded-xl shadow-sm transition font-semibold";
+                btn444.className = "flex-1 py-1.5 text-slate-500 hover:text-slate-700 rounded-xl transition font-semibold";
+                desc.innerText = "Sangat ampuh menenangkan emosi marah, pikiran kacau, atau sulit tidur.";
+                tag.innerText = "Mode: 4-7-8 (Deep Calming)";
             }
-            toggleSettingsModal();
+        }
+
+        function startBreathingExercise() {
+            if (isBreathingRunning) return;
+            isBreathingRunning = true;
+
+            const circle = document.getElementById('breathCircle');
+            const breathText = document.getElementById('breathText');
+            const breathCounter = document.getElementById('breathCounter');
+            const btnStart = document.getElementById('btnStartBreath');
+
+            btnStart.disabled = true;
+            btnStart.classList.add('opacity-50');
+
+            // Set durasi berdasarkan mode
+            const durations = currentBreathingMode === '444' ? [4, 4, 4] : [4, 7, 8];
+            let phase = 0; // 0: Hirup, 1: Tahan, 2: Hembuskan
+            let count = durations[phase];
+
+            function updateCycle() {
+                if (!isBreathingRunning) return;
+
+                if (phase === 0) {
+                    breathText.innerText = "Hirup Napas Perlahan...";
+                    circle.style.transitionDuration = `${durations[0]}s`;
+                    circle.style.transform = "scale(1.35)";
+                } else if (phase === 1) {
+                    breathText.innerText = "Tahan Napas...";
+                    circle.style.transitionDuration = "0.3s";
+                    circle.style.transform = "scale(1.35)";
+                } else {
+                    breathText.innerText = "Hembuskan Perlahan...";
+                    circle.style.transitionDuration = `${durations[2]}s`;
+                    circle.style.transform = "scale(0.85)";
+                }
+
+                breathCounter.innerText = count;
+
+                breathingTimer = setInterval(() => {
+                    count--;
+                    if (count > 0) {
+                        breathCounter.innerText = count;
+                    } else {
+                        clearInterval(breathingTimer);
+                        phase = (phase + 1) % 3;
+                        count = durations[phase];
+                        updateCycle();
+                    }
+                }, 1000);
+            }
+
+            updateCycle();
+        }
+
+        function stopBreathingExercise() {
+            isBreathingRunning = false;
+            if (breathingTimer) clearInterval(breathingTimer);
+
+            const circle = document.getElementById('breathCircle');
+            const breathText = document.getElementById('breathText');
+            const breathCounter = document.getElementById('breathCounter');
+            const btnStart = document.getElementById('btnStartBreath');
+
+            if (circle) {
+                circle.style.transitionDuration = "0.4s";
+                circle.style.transform = "scale(1)";
+            }
+            if (breathText) breathText.innerText = "Tekan 'Mulai' untuk relaksasi";
+            if (breathCounter) breathCounter.innerText = "4";
+            if (btnStart) {
+                btnStart.disabled = false;
+                btnStart.classList.remove('opacity-50');
+            }
         }
 
         function exportChatSummary() {
@@ -637,6 +796,12 @@
 
         function formatMarkdownText(text) {
             let formatted = escapeHtml(text);
+            
+            formatted = formatted
+                .replace(/&lt;br\s*\/?&gt;/gi, '<br>')
+                .replace(/&lt;b&gt;(.*?)&lt;\/b&gt;/gi, '<b>$1</b>')
+                .replace(/&lt;i&gt;(.*?)&lt;\/i&gt;/gi, '<i>$1</i>');
+
             formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
             formatted = formatted.replace(/\*(.*?)\*/g, '<i>$1</i>');
             formatted = formatted.replace(/\n/g, '<br>');
